@@ -1,7 +1,7 @@
 # Piston Installer
 
 ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/Eatham532/Piston-Installer?include_prereleases&logo=GitHub&style=flat-square) 
-![Discord](https://img.shields.io/discord/981457221038796830?logo=Discord&style=flat-square)
+[![Discord](https://img.shields.io/discord/981457221038796830?logo=Discord&style=flat-square)](https://discord.gg/mgP9H568U5)
 
 
 ## What is Piston Installer?
