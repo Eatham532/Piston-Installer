@@ -50,11 +50,11 @@ namespace Piston_Installer
         //BUGS: Some mods with the same ID in both places. E.G. Mouse tweaks
         private async void SetupModsFolder()
         {
+            IsProcessingModsFolder = true;
             ModsInModsModrinthFolder.Clear();
             ModsInModsFolderModrinthProjectID.Clear();
             ModsInModsCurseforgeFolder.Clear();
             ModsInModsFolderCurseforgeProjectID.Clear();
-            IsProcessingModsFolder = true;
             if (Directory.Exists(ModsDirectoryTextBox.Text))
             {
                 foreach (string file in Directory.GetFiles(ModsDirectoryTextBox.Text))
@@ -483,7 +483,7 @@ namespace Piston_Installer
 
             Mod_Extra_Info_Viewer modViewer = new Mod_Extra_Info_Viewer(itemViewer.Hidden_Data, itemViewer.TitleText, this.GetModsFromCurseforgeBtn.Enabled, McVersionComboBox.Text, ModLoaderComboBox.Text, this.ModsDirectoryTextBox.Text);
 
-            await InitializeInstallMods();
+            SetupModsFolder();
             AddItems();
             client.Dispose();
             this.Enabled = true;
