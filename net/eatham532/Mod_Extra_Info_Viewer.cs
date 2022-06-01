@@ -115,6 +115,7 @@ namespace Install_Mods
                 {
                     this.AllowModDistrubution = false;
                 }
+
                 var html = (await client.GetModDescriptionAsync(int.Parse(ModID))).Data;
                 this.HtmlTextBox.Text = "<!DOCTYPE html>\n<html>\n<head>\n<meta charset = \"UTF-8\">\n</ head >\n<body>\n" + html.Replace("<img ", "<img style=\"max-width: 590px;\"") + "\n</body>\n</html>";
                 this.WebView.NavigateToString("<!DOCTYPE html>\n<html>\n<head>\n<meta charset = \"UTF-8\">\n</ head >\n<body>\n" + html.Replace("<img ", "<img style=\"max-width: 590px;\"") + "\n</body>\n</html>");
@@ -123,9 +124,9 @@ namespace Install_Mods
 
                 foreach (var file in Mod.Data.LatestFiles)
                 {
-                    if (file.GameVersions.Contains(GameVersion) && file.IsAvailable && file.GameVersions.Contains(Modloader))
+                    if (file.GameVersions.Contains(GameVersion) && file.IsAvailable && file.GameVersions.Contains(Modloader) && file.FileStatus == CurseForge.APIClient.Models.Files.FileStatus.Approved)
                     {
-                        AddVersionToVersionList(file.FileName, file.GameVersions, file.FileStatus.ToString(), file.FileDate.ToString(), file.Id.ToString(), file.DownloadUrl);
+                        AddVersionToVersionList(file.FileName, file.GameVersions, file.ReleaseType.ToString(), file.FileDate.ToString(), file.Id.ToString(), file.DownloadUrl);
                     }
                 }
 
@@ -185,11 +186,11 @@ namespace Install_Mods
         private void AddVersionToVersionList(string name, List<string> versions, string state, string date, string versionID, string uri)
         {
             Color color;
-            if (state == "release")
+            if (state.ToLower() == "release")
             {
                 color = Color.Green;
             }
-            else if (state == "beta")
+            else if (state.ToLower() == "beta")
             {
                 color = Color.Orange;
             }

@@ -135,9 +135,9 @@ namespace Piston_Installer
 
         private async Task AddItems()
         {
-            if (IsSearching)
+            if (IsSearching || IsProcessingModsFolder)
             {
-                return;
+                Application.DoEvents();
             }
 
 
@@ -161,13 +161,15 @@ namespace Piston_Installer
 
             //Searching
 
-            if (GetModsFromModrinthBtn.Enabled /* Using CurseForge */)
+            if (!GetModsFromCurseforgeBtn.Enabled /* Using CurseForge */)
             {
                 ApiClient client = CurseforgeUtils.GetApi();
 
 
                 //Add Search Filters
                 var searchedMods = await client.SearchModsAsync(432, searchFilter: SearchBox.Text, modLoaderType: ModLoaderComboBox.Text == "Fabric" ? CurseForge.APIClient.Models.Mods.ModLoaderType.Fabric : CurseForge.APIClient.Models.Mods.ModLoaderType.Forge, gameVersion: McVersionComboBox.Text, pageSize: (int?)ResultsPerPageUpDown.Value);
+
+
 
                 int i = 0;
                 ChildPanel.Visible = false;
@@ -179,10 +181,10 @@ namespace Piston_Installer
                         enviroment = "Can't download";
                     }
 
+
                     AddItemViewer("ItemViewer" + i.ToString(), mod.Logo.Url, mod.Name, mod.Summary, enviroment, mod.Id.ToString());
                     i++;
                 }
-
                 client.Dispose();
             } 
             else
@@ -269,7 +271,6 @@ namespace Piston_Installer
 
         private async Task AddItemViewer(string Name, string image, string Title, string Subtitle, string Enviroment, string HiddenData)
         {
-
             ItemViewer itemViewer = new ItemViewer();
             itemViewer.Name = Name;
             itemViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -470,7 +471,7 @@ namespace Piston_Installer
             IsDownloadingMod = false;
         }
 
-        private void ItemViewer_Interface_Click(object sender, EventArgs e)
+        private async void ItemViewer_Interface_Click(object sender, EventArgs e)
         {
             this.Enabled = false;
             ItemViewer itemViewer = (ItemViewer)sender;
@@ -480,9 +481,9 @@ namespace Piston_Installer
             }
             ApiClient client = CurseforgeUtils.GetApi();
 
-            Mod_Extra_Info_Viewer modViewer = new Mod_Extra_Info_Viewer(itemViewer.Hidden_Data, itemViewer.TitleText, !GetModsFromModrinthBtn.Enabled, McVersionComboBox.Text, ModLoaderComboBox.Text, this.ModsDirectoryTextBox.Text);
+            Mod_Extra_Info_Viewer modViewer = new Mod_Extra_Info_Viewer(itemViewer.Hidden_Data, itemViewer.TitleText, this.GetModsFromCurseforgeBtn.Enabled, McVersionComboBox.Text, ModLoaderComboBox.Text, this.ModsDirectoryTextBox.Text);
 
-            InitializeInstallMods();
+            await InitializeInstallMods();
             AddItems();
             client.Dispose();
             this.Enabled = true;
@@ -665,16 +666,16 @@ namespace Piston_Installer
         //Switch Modlocations
         private void GetModsFromModrinthBtn_Click(object sender, EventArgs e)
         {
-            GetModsFromModrinthBtn.Enabled = false;
-            GetModsFromCurseforgeBtn.Enabled = true;
+            this.GetModsFromModrinthBtn.Enabled = false;
+            this.GetModsFromCurseforgeBtn.Enabled = true;
 
             AddItems();
         }
 
         private void GetModsFromCurseforgeBtn_Click(object sender, EventArgs e)
         {
-            GetModsFromCurseforgeBtn.Enabled = false;
-            GetModsFromModrinthBtn.Enabled = true;
+            this.GetModsFromCurseforgeBtn.Enabled = false;
+            this.GetModsFromModrinthBtn.Enabled = true;
 
             AddItems();
         }
