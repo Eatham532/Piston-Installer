@@ -71,10 +71,7 @@ namespace Piston_Installer
         {
             UseWaitCursor = true;
 
-            this.AddModsBtn.Enabled = false;
-            this.Modpack.Enabled = false;
-            this.Install_Fabric.Enabled = false;
-            this.Install_Forge.Enabled = false;
+            this.Enabled = false;
             Install_Mods mods = new Install_Mods();
             
             this.Hide();
@@ -89,11 +86,7 @@ namespace Piston_Installer
             }
             UseWaitCursor = false;
 
-            this.AddModsBtn.Enabled = true;
-            this.Modpack.Enabled = true;
-            this.Install_Fabric.Enabled = true;
-            this.Install_Forge.Enabled = true;
-
+            this.Enabled = true;
         }
     }
 }

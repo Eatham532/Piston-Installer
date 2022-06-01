@@ -12,64 +12,89 @@ namespace Piston_Installer.UserControls
 {
     public partial class ItemViewer : UserControl
     {
+        internal string HiddenData;
         public ItemViewer()
         {
             InitializeComponent();
         }
 
-        [Description("Title"), Category("Data")]
+        [Description("Title"), Category("Text")]
         public string TitleText
         {
             get => GrandChildTitleLabel.Text;
             set => GrandChildTitleLabel.Text = value;
         }
 
-        [Description("Subtitle"), Category("Data")]
+        [Description("Subtitle"), Category("Text")]
         public string SubtitleText
         {
             get => GrandChildSubtitleLabel.Text;
             set => GrandChildSubtitleLabel.Text = value;
         }
 
-        [Description("Image"), Category("Data")]
+        [Description("Image"), Category("Appearance")]
         public Image Image
         {
             get => pictureBox1.Image;
             set => pictureBox1.Image = value;
         }
 
-        [Description("Button Image"), Category("Data")]
+        [Description("Button Image"), Category("Button")]
         public Image ButtonImage
         {
             get => GrandChildButton.BackgroundImage;
             set => GrandChildButton.BackgroundImage = value;
         }
 
-        [Description("Button Background Color"), Category("Data")]
+        [Description("Button Background Color"), Category("Button")]
         public Color ButtonBackgroundColor
         {
             get => GrandChildButton.BackColor;
             set => GrandChildButton.BackColor = value;
         }
 
-            [Description("Enviroment Text"), Category("Data")]
+        [Description("Enviroment Text"), Category("Text")]
         public string EnviromentText
         {
             get => EnviromentsLabel.Text;
             set => EnviromentsLabel.Text = value;
         }
 
-        [Description("Hidden Data"), Category("Data")]
+        [Description("Hidden Data"), Category("Storage")]
         public string Hidden_Data
         {
-            get => HiddenData.Text;
-            set => HiddenData.Text = value;
+            get => HiddenData;
+            set => HiddenData = value;
+        }
+
+        [Description("Hidden Data"), Category("Visibility")]
+        public bool ButtonVisible
+        {
+            get => GrandChildButton.Visible;
+            set => GrandChildButton.Visible = value;
+        }
+
+        [Description("ImageName"), Category("Data")]
+        public string ImageName
+        {
+            get => pictureBox1.Name;
+            set => pictureBox1.Name = value;
         }
 
         [Browsable(true)]
         [Category("Action")]
         [Description("Invoked when user clicks button")]
         public event EventHandler ButtonClick;
+
+        [Browsable(true)]
+        [Category("Action")]
+        [Description("Invoked when user clicks image")]
+        public event EventHandler ImageClick;
+
+        [Browsable(true)]
+        [Category("Action")]
+        [Description("Invoked when user clicks interface")]
+        public event EventHandler InterfaceClick;
 
         private void GrandChildButton_Click(object sender, EventArgs e)
         {
@@ -91,6 +116,42 @@ namespace Piston_Installer.UserControls
             {
                 InfoSymbolLabel.Visible = true;
             }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            if (this.ImageClick != null)
+                this.ImageClick(this, e);
+        }
+
+        private void GrandChildTitleLabel_Click(object sender, EventArgs e)
+        {
+            if (this.InterfaceClick != null)
+                this.InterfaceClick(this, e);
+        }
+
+        private void GrandChildSubtitleLabel_Click(object sender, EventArgs e)
+        {
+            if (this.InterfaceClick != null)
+                this.InterfaceClick(this, e);
+        }
+
+        private void EnviromentsLabel_Click(object sender, EventArgs e)
+        {
+            if (this.InterfaceClick != null)
+                this.InterfaceClick(this, e);
+        }
+
+        private void InfoSymbolLabel_Click(object sender, EventArgs e)
+        {
+            if (this.InterfaceClick != null)
+                this.InterfaceClick(this, e);
+        }
+
+        private void ItemViewer_Click(object sender, EventArgs e)
+        {
+            if (this.InterfaceClick != null)
+                this.InterfaceClick(this, e);
         }
     }
 }

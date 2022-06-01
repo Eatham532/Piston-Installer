@@ -11,7 +11,7 @@ namespace Piston_Installer
     {
         //A bunch of variables
 
-        public static string responseBody;
+        private string responseBody;
 
         public List<FabricUtils.fabricLoaderVersion> LoaderVersionsList;
         private static string MinecraftDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\.minecraft";
@@ -19,9 +19,9 @@ namespace Piston_Installer
         private bool LastInstallTextBox_HadShown = false;
         private bool downloadComplete = false;
 
-        public string GameVersion;
-        public string LoaderVersion;
-        public string ImageDataUri = utils.GetProfileUtils.fabricIcon;
+        private string GameVersion;
+        private string LoaderVersion;
+        private string ImageDataUri = utils.ProjectData.Default.FabricIcon;
 
 
         //Initialisation
@@ -79,7 +79,7 @@ namespace Piston_Installer
 
 
         //Initialize Versions
-        private async void InitializeFabricMcVersions()
+        private void InitializeFabricMcVersions()
         {
             for (int i = 0; i < FabricUtils.FabricVersionsList.Count; i++)
             {
@@ -159,6 +159,7 @@ namespace Piston_Installer
         //Remove textbox cursor
         private void Install_Fabric_Click(object sender, EventArgs e)
         {
+            this.Enabled = false;
             ActiveControl = null;
 
             if (!Directory.Exists(minecraftDirectoryTextBox.Text))
@@ -255,7 +256,7 @@ namespace Piston_Installer
                 return;
             }
 
-
+            this.Enabled = true;
             //Close app because fabric is installed
 
 

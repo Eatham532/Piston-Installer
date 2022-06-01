@@ -53,7 +53,7 @@
             this.GetModsFromModrinthBtn = new System.Windows.Forms.Button();
             this.GetModsFromCurseforgeBtn = new System.Windows.Forms.Button();
             this.MenuGroupBox = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.SearchOptionsLabel = new System.Windows.Forms.Label();
             this.TITLE = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.OptionsPanel = new System.Windows.Forms.Panel();
@@ -319,7 +319,7 @@
             // MenuGroupBox
             // 
             this.MenuGroupBox.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.MenuGroupBox.Controls.Add(this.label1);
+            this.MenuGroupBox.Controls.Add(this.SearchOptionsLabel);
             this.MenuGroupBox.Controls.Add(this.GetModsFromCurseforgeBtn);
             this.MenuGroupBox.Controls.Add(this.TITLE);
             this.MenuGroupBox.Controls.Add(this.groupBox1);
@@ -338,15 +338,15 @@
             this.MenuGroupBox.TabStop = false;
             this.MenuGroupBox.Click += new System.EventHandler(this.MenuGroupBox_Click);
             // 
-            // label1
+            // SearchOptionsLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(18, 435);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(212, 41);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "SearchOptions";
+            this.SearchOptionsLabel.AutoSize = true;
+            this.SearchOptionsLabel.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.SearchOptionsLabel.Location = new System.Drawing.Point(18, 435);
+            this.SearchOptionsLabel.Name = "SearchOptionsLabel";
+            this.SearchOptionsLabel.Size = new System.Drawing.Size(220, 41);
+            this.SearchOptionsLabel.TabIndex = 9;
+            this.SearchOptionsLabel.Text = "Search Options";
             // 
             // TITLE
             // 
@@ -442,7 +442,7 @@
         private Button GetModsFromModrinthBtn;
         private Button GetModsFromCurseforgeBtn;
         private GroupBox MenuGroupBox;
-        private Label label1;
+        private Label SearchOptionsLabel;
         private Label TITLE;
         private GroupBox groupBox1;
         private Panel OptionsPanel;

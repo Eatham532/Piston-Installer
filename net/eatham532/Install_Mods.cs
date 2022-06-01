@@ -193,22 +193,22 @@ namespace Piston_Installer
 
                     if (CategoriesComboBox.Text == "None")
                     {
-                        await ModrinthUtils.ModrinthSearch(search, "[\"categories:" + ModLoaderComboBox.Text + "\"],[\"versions:" + McVersionComboBox.Text + "\"]", SortByComboBox.Text.ToLower(), 0, 20);
+                        await ModrinthUtils.ModrinthSearch(search, "[\"categories:" + ModLoaderComboBox.Text + "\"],[\"versions:" + McVersionComboBox.Text + "\"], [\"project_type: mod\"]", SortByComboBox.Text.ToLower(), 0, 20);
                     }
                     else
                     {
-                        await ModrinthUtils.ModrinthSearch(search, "[\"categories:" + ModLoaderComboBox.Text + "\"],[\"versions:" + McVersionComboBox.Text + "\"],[\"categories:" + CategoriesComboBox.Text + "\"]", SortByComboBox.Text.ToLower(), 0, 20);
+                        await ModrinthUtils.ModrinthSearch(search, "[\"categories:" + ModLoaderComboBox.Text + "\"],[\"versions:" + McVersionComboBox.Text + "\"],[\"categories:" + CategoriesComboBox.Text + "\"], [\"project_type: mod\"]", SortByComboBox.Text.ToLower(), 0, 20);
                     }
                 }
                 else
                 {
                     if (CategoriesComboBox.Text == "None")
                     {
-                        await ModrinthUtils.ModrinthSearch("[\"categories:" + ModLoaderComboBox.Text + "\"],[\"versions:" + McVersionComboBox.Text + "\"]", SortByComboBox.Text.ToLower(), (int)ResultsPerPageUpDown.Value);
+                        await ModrinthUtils.ModrinthSearch("[\"categories:" + ModLoaderComboBox.Text + "\"],[\"versions:" + McVersionComboBox.Text + "\"], [\"project_type: mod\"]", SortByComboBox.Text.ToLower(), (int)ResultsPerPageUpDown.Value);
                     }
                     else
                     {
-                        await ModrinthUtils.ModrinthSearch("[\"categories:" + ModLoaderComboBox.Text + "\"],[\"versions:" + McVersionComboBox.Text + "\"],[\"categories:" + CategoriesComboBox.Text + "\"]", SortByComboBox.Text.ToLower(), (int)ResultsPerPageUpDown.Value);
+                        await ModrinthUtils.ModrinthSearch("[\"categories:" + ModLoaderComboBox.Text + "\"],[\"versions:" + McVersionComboBox.Text + "\"],[\"categories:" + CategoriesComboBox.Text + "\"], [\"project_type: mod\"]", SortByComboBox.Text.ToLower(), (int)ResultsPerPageUpDown.Value);
                     }
                 }
 
@@ -251,16 +251,13 @@ namespace Piston_Installer
                     AddItemViewer("ItemViewer" + i.ToString(), searchResult.icon_url, searchResult.title, searchResult.description, enviroment, searchResult.project_id);
                     i++;
                 }
-                if (ModrinthUtils.ModrinthSearchDeserialized.hits.Count == 0)
-                {
-                    await AddItemViewer("NoResults", "", "There are no results for your search.", "", "", "");
-                }
             }
 
 
-
-
-            
+            if (Panel_Height == 0)
+            {
+                await AddItemViewer("NoResults", "", "There are no results for your search.", "", "", "");
+            }
 
             this.UseWaitCursor = false;
             LoadingLabel.Visible = false;
@@ -311,9 +308,19 @@ namespace Piston_Installer
             itemViewer.TabIndex = 0;
             itemViewer.TitleText = Title;
             itemViewer.EnviromentText = Enviroment;
+            itemViewer.ImageName = Title + "-Logo";
             itemViewer.ButtonClick += new EventHandler(this.ItemViewerButton_Click);
-            itemViewer.Click += new EventHandler(this.ItemViewer_Click);
-            itemViewer.Hidden_Data = HiddenData;
+            itemViewer.InterfaceClick += new EventHandler(this.ItemViewer_Interface_Click);
+            itemViewer.ImageClick += new EventHandler(this.ItemViewer_Image_Click);
+            if (HiddenData == "")
+            {
+                itemViewer.ButtonVisible = false;
+                itemViewer.HiddenData = null;
+            }
+            else
+            {
+                itemViewer.Hidden_Data = HiddenData;
+            }
             itemViewer.Show();
             ChildPanel.Controls.Add(itemViewer);
             CloneCount++;
@@ -330,7 +337,6 @@ namespace Piston_Installer
                 {
                     string target = "https://www.curseforge.com/minecraft/mc-mods/search?search=" + itemViewer.TitleText.Replace(" ", "+").ToLower();
                     Process.Start(new ProcessStartInfo(target) { UseShellExecute = true });
-                    Process.Start("explorer.exe", ModsDirectoryTextBox.Text);
                 }
                 catch (System.ComponentModel.Win32Exception noBrowser)
                 {
@@ -464,21 +470,34 @@ namespace Piston_Installer
             IsDownloadingMod = false;
         }
 
-        private async void ItemViewer_Click(object sender, EventArgs e)
+        private void ItemViewer_Interface_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Clicked");
+            this.Enabled = false;
             ItemViewer itemViewer = (ItemViewer)sender;
+            if (itemViewer.HiddenData == null)
+            {
+                return;
+            }
             ApiClient client = CurseforgeUtils.GetApi();
 
+            Mod_Extra_Info_Viewer modViewer = new Mod_Extra_Info_Viewer(itemViewer.Hidden_Data, itemViewer.TitleText, !GetModsFromModrinthBtn.Enabled, McVersionComboBox.Text, ModLoaderComboBox.Text, this.ModsDirectoryTextBox.Text);
 
-            Mod_Viewer modViewer = new Mod_Viewer(itemViewer.Hidden_Data, !GetModsFromModrinthBtn.Enabled);
-
+            InitializeInstallMods();
+            AddItems();
             client.Dispose();
+            this.Enabled = true;
+        }
+
+        private void ItemViewer_Image_Click(object sender, EventArgs e)
+        {
+            var ItemViewer = (ItemViewer)sender;
+            Image Image = ItemViewer.Image;
+            var messagebox = new net.eatham532.UtilForms.PictureMessagebox(null, Image, ItemViewer.ImageName);
         }
 
 
 
-        
+
 
 
         //Reset Item Boxes
@@ -682,6 +701,7 @@ namespace Piston_Installer
 
         private async Task DownloadFile(string Url, string DownloadLocation)
         {
+
             try
             {
                 Uri uri = new Uri(Url);

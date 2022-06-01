@@ -35,7 +35,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.InfoSymbolLabel = new System.Windows.Forms.Label();
             this.EnviromentsLabel = new System.Windows.Forms.Label();
-            this.HiddenData = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,11 +50,13 @@
             resources.ApplyResources(this.GrandChildSubtitleLabel, "GrandChildSubtitleLabel");
             this.GrandChildSubtitleLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.GrandChildSubtitleLabel.Name = "GrandChildSubtitleLabel";
+            this.GrandChildSubtitleLabel.Click += new System.EventHandler(this.GrandChildSubtitleLabel_Click);
             // 
             // GrandChildTitleLabel
             // 
             resources.ApplyResources(this.GrandChildTitleLabel, "GrandChildTitleLabel");
             this.GrandChildTitleLabel.Name = "GrandChildTitleLabel";
+            this.GrandChildTitleLabel.Click += new System.EventHandler(this.GrandChildTitleLabel_Click);
             // 
             // pictureBox1
             // 
@@ -63,12 +64,14 @@
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // InfoSymbolLabel
             // 
             resources.ApplyResources(this.InfoSymbolLabel, "InfoSymbolLabel");
             this.InfoSymbolLabel.ForeColor = System.Drawing.SystemColors.InfoText;
             this.InfoSymbolLabel.Name = "InfoSymbolLabel";
+            this.InfoSymbolLabel.Click += new System.EventHandler(this.InfoSymbolLabel_Click);
             // 
             // EnviromentsLabel
             // 
@@ -76,16 +79,11 @@
             this.EnviromentsLabel.ForeColor = System.Drawing.SystemColors.InfoText;
             this.EnviromentsLabel.Name = "EnviromentsLabel";
             this.EnviromentsLabel.TextChanged += new System.EventHandler(this.EnviromentsLabel_TextChanged);
-            // 
-            // HiddenData
-            // 
-            resources.ApplyResources(this.HiddenData, "HiddenData");
-            this.HiddenData.Name = "HiddenData";
+            this.EnviromentsLabel.Click += new System.EventHandler(this.EnviromentsLabel_Click);
             // 
             // ItemViewer
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.Controls.Add(this.HiddenData);
             this.Controls.Add(this.EnviromentsLabel);
             this.Controls.Add(this.InfoSymbolLabel);
             this.Controls.Add(this.GrandChildButton);
@@ -94,6 +92,7 @@
             this.Controls.Add(this.pictureBox1);
             resources.ApplyResources(this, "$this");
             this.Name = "ItemViewer";
+            this.Click += new System.EventHandler(this.ItemViewer_Click);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -108,6 +107,5 @@
         private PictureBox pictureBox1;
         private Label InfoSymbolLabel;
         private Label EnviromentsLabel;
-        private Label HiddenData;
     }
 }

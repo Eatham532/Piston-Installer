@@ -82,7 +82,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;GrandChildButton.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="GrandChildSubtitleLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -112,7 +112,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;GrandChildSubtitleLabel.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="GrandChildTitleLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -142,7 +142,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;GrandChildTitleLabel.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>4</value>
   </data>
   <data name="pictureBox1.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
@@ -169,7 +169,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="InfoSymbolLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -199,7 +199,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;InfoSymbolLabel.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="EnviromentsLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -229,36 +229,6 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;EnviromentsLabel.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="HiddenData.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="HiddenData.Location" type="System.Drawing.Point, System.Drawing">
-    <value>158, 103</value>
-  </data>
-  <data name="HiddenData.Size" type="System.Drawing.Size, System.Drawing">
-    <value>141, 32</value>
-  </data>
-  <data name="HiddenData.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="HiddenData.Text" xml:space="preserve">
-    <value>HiddenData</value>
-  </data>
-  <data name="HiddenData.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;HiddenData.Name" xml:space="preserve">
-    <value>HiddenData</value>
-  </data>
-  <data name="&gt;&gt;HiddenData.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;HiddenData.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;HiddenData.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

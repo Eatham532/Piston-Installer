@@ -120,8 +120,8 @@ namespace Piston_Installer
             chooseMinecraftDirectoryBtn.Enabled = false;
             InstallDirectoryBtn.Enabled = false;
             selectImageButton.Enabled = false;
-
-
+            
+            
             openModpackBtn.Enabled = false;
             ProgressOfInstallationProgressBar.Enabled = true;
 

@@ -84,7 +84,7 @@ namespace Piston_Installer.utils
             }
         }
 
-        public static async Task GetProjectVersion(string VersionId)
+        public static async Task<ModrinthVersion> GetProjectVersion(string VersionId)
         {
             string URL = "https://api.modrinth.com/v2/version/" + VersionId;
             HttpClient client = new HttpClient();
@@ -92,9 +92,10 @@ namespace Piston_Installer.utils
             response.EnsureSuccessStatusCode();
             responseBody = await response.Content.ReadAsStringAsync();
             ModrinthVersionDeserialized = JsonConvert.DeserializeObject<ModrinthVersion>(responseBody);
+            return ModrinthVersionDeserialized;
         }
 
-        public static async Task GetProject(string projectId)
+        public static async Task<ModrinthProject> GetProject(string projectId)
         {
             string URL = "https://api.modrinth.com/v2/project/" + projectId;
             HttpClient client = new HttpClient();
@@ -102,6 +103,7 @@ namespace Piston_Installer.utils
             response.EnsureSuccessStatusCode();
             responseBody = await response.Content.ReadAsStringAsync();
             ModrinthProjectDeserialized = JsonConvert.DeserializeObject<ModrinthProject>(responseBody);
+            return ModrinthProjectDeserialized;
         }
 
 
@@ -117,6 +119,20 @@ namespace Piston_Installer.utils
 
 
 
+
+
+
+
+
+        // Root myDeserializedClass = JsonConvert.DeserializeObject<GalleryImage>(myJsonResponse);
+        public class GalleryImage
+        {
+            public string url { get; set; }
+            public bool featured { get; set; }
+            public string title { get; set; }
+            public string description { get; set; }
+            public DateTime created { get; set; }
+        }
 
 
 
@@ -165,12 +181,14 @@ namespace Piston_Installer.utils
 
 
         // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
+
         public class File
         {
             public Hashes hashes { get; set; }
             public string url { get; set; }
             public string filename { get; set; }
             public bool primary { get; set; }
+            public int size { get; set; }
         }
 
         public class Hashes
@@ -181,26 +199,44 @@ namespace Piston_Installer.utils
 
         public class ModrinthVersion
         {
-            public string id { get; set; }
-            public string project_id { get; set; }
-            public string author_id { get; set; }
-            public bool featured { get; set; }
             public string name { get; set; }
             public string version_number { get; set; }
             public string changelog { get; set; }
-            public object changelog_url { get; set; }
+            public List<Dependency> dependencies { get; set; }
+            public List<string> game_versions { get; set; }
+            public string version_type { get; set; }
+            public List<string> loaders { get; set; }
+            public bool featured { get; set; }
+            public string id { get; set; }
+            public string project_id { get; set; }
+            public string author_id { get; set; }
             public DateTime date_published { get; set; }
             public int downloads { get; set; }
-            public string version_type { get; set; }
+            public object changelog_url { get; set; }
             public List<File> files { get; set; }
-            public List<object> dependencies { get; set; }
-            public List<string> game_versions { get; set; }
-            public List<string> loaders { get; set; }
         }
 
 
 
+
+
         // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
+        public class DonationUrl
+        {
+            public string id { get; set; }
+            public string platform { get; set; }
+            public string url { get; set; }
+        }
+
+        public class Gallery
+        {
+            public string url { get; set; }
+            public bool featured { get; set; }
+            public string title { get; set; }
+            public string description { get; set; }
+            public DateTime created { get; set; }
+        }
+
         public class License
         {
             public string id { get; set; }
@@ -210,33 +246,36 @@ namespace Piston_Installer.utils
 
         public class ModrinthProject
         {
-            public string id { get; set; }
             public string slug { get; set; }
-            public string project_type { get; set; }
-            public string team { get; set; }
             public string title { get; set; }
             public string description { get; set; }
-            public string body { get; set; }
-            public object body_url { get; set; }
-            public DateTime published { get; set; }
-            public DateTime updated { get; set; }
-            public string status { get; set; }
-            public object moderator_message { get; set; }
-            public License license { get; set; }
+            public List<string> categories { get; set; }
             public string client_side { get; set; }
             public string server_side { get; set; }
-            public int downloads { get; set; }
-            public int followers { get; set; }
-            public List<string> categories { get; set; }
-            public List<string> versions { get; set; }
-            public string icon_url { get; set; }
+            public string body { get; set; }
             public string issues_url { get; set; }
             public string source_url { get; set; }
             public string wiki_url { get; set; }
             public string discord_url { get; set; }
-            public List<object> donation_urls { get; set; }
-            public List<object> gallery { get; set; }
+            public List<DonationUrl> donation_urls { get; set; }
+            public string project_type { get; set; }
+            public int downloads { get; set; }
+            public string icon_url { get; set; }
+            public string id { get; set; }
+            public string team { get; set; }
+            public object body_url { get; set; }
+            public object moderator_message { get; set; }
+            public DateTime published { get; set; }
+            public DateTime updated { get; set; }
+            public int followers { get; set; }
+            public string status { get; set; }
+            public License license { get; set; }
+            public List<string> versions { get; set; }
+            public List<Gallery> gallery { get; set; }
         }
+
+
+    
 
 
 
@@ -296,7 +335,7 @@ namespace Piston_Installer.utils
 
                 using (WebClient wc = new WebClient())
                 {
-                    String path = Path.Combine(DownloadLocation, filename);
+                    string path = Path.Combine(DownloadLocation, filename);
                     wc.DownloadProgressChanged += wc_DownloadProgressChanged;
                     wc.DownloadFileCompleted += wc_DownloadFileCompleted;
                     wc.DownloadFileAsync(uri, path);
