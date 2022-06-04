@@ -14,7 +14,7 @@ I want to make this app mostly community drivien. If you have a suggestion don't
 Built using C# as a winForms project.
 
 
-##UPDATE
+## UPDATE
 
 - I am redesigning Piston Installer as it is now no longer going to be built using winForms. Now it will be made using the new MAUI. This will let me develop for both mac and windows (and maybe linux.) 
 
