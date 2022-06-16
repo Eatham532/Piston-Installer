@@ -7,16 +7,16 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Piston_Installer.utils
+namespace PistonInstaller.net.Eatham532.utils
 {
     public class ModrinthUtils
     {
+        private static bool IsDownloading = false;
         public static ModrinthSearchResult ModrinthSearchDeserialized = new ModrinthSearchResult();
         public static ModrinthProject ModrinthProjectDeserialized = new ModrinthProject();
         public static ModrinthVersion ModrinthVersionDeserialized = new ModrinthVersion();
 
         public static string responseBody;
-        public static bool isDownloading = false;
 
         public static async Task ModrinthSearch(string query, string index, int offset, int limit)
         {
@@ -53,24 +53,20 @@ namespace Piston_Installer.utils
 
 
 
-        public static async void DownloadFabricAPI(string DownloadLocation, string version)
+        public static async Task DownloadFabricAPI(string DownloadLocation, string version)
         {
-            isDownloading = true;
-            await ModrinthSearch("fabric-api", "[\"categories:fabric\"],[\"versions:" + version + "\"]", "relevance", 0, 1);
-
-            string URL = "https://api.modrinth.com/v2/project/" + ModrinthSearchDeserialized.hits[0].project_id;
             HttpClient client = new HttpClient();
-            HttpResponseMessage response = await client.GetAsync(URL);
+            HttpResponseMessage response = await client.GetAsync("https://api.modrinth.com/v2/project/P7dR8mSH");
             response.EnsureSuccessStatusCode();
             responseBody = await response.Content.ReadAsStringAsync();
             ModrinthProjectDeserialized = JsonConvert.DeserializeObject<ModrinthProject>(responseBody);
 
             string DownloadLink = null;
-            for (int i = 0; i < ModrinthProjectDeserialized.versions.Count; i++)
-            {
-                await GetProjectVersion(ModrinthProjectDeserialized.versions[i]);
 
-                if (ModrinthVersionDeserialized.game_versions[0] == version)
+            foreach (var mod in ModrinthProjectDeserialized.versions)
+            {
+                await GetProjectVersion(mod);
+                if (ModrinthVersionDeserialized.game_versions.Contains(version))
                 {
                     DownloadLink = ModrinthVersionDeserialized.files[0].url;
                     break;
@@ -80,8 +76,10 @@ namespace Piston_Installer.utils
 
             if (DownloadLink != null)
             {
-                DownloadFile(DownloadLink, DownloadLocation);
+                await DownloadFile(DownloadLink, DownloadLocation);
             }
+
+            return;
         }
 
         public static async Task<ModrinthVersion> GetProjectVersion(string VersionId)
@@ -325,25 +323,29 @@ namespace Piston_Installer.utils
         //Download File Area
         //DONT TOUCH :)
 
-        private static void DownloadFile(string URL, string DownloadLocation)
+        private static async Task DownloadFile(string Url, string DownloadLocation)
         {
-            try
+            while (IsDownloading)
             {
-                string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                Uri uri = new Uri(URL);
-                string filename = Path.GetFileName(uri.LocalPath);
-
-                using (WebClient wc = new WebClient())
-                {
-                    string path = Path.Combine(DownloadLocation, filename);
-                    wc.DownloadProgressChanged += wc_DownloadProgressChanged;
-                    wc.DownloadFileCompleted += wc_DownloadFileCompleted;
-                    wc.DownloadFileAsync(uri, path);
-                }
+                await Task.Delay(500);
             }
-            catch
+
+            IsDownloading = true;
+            using (WebClient wc = new WebClient())
             {
-                System.Diagnostics.Debug.WriteLine("Make sure the download link is correct");
+                wc.DownloadProgressChanged += wc_DownloadProgressChanged;
+                wc.DownloadFileCompleted += wc_DownloadFileCompleted;
+                wc.DownloadFileAsync(
+                    // Param1 = Link of file
+                    new System.Uri(Url),
+                    // Param2 = Path to save
+                    DownloadLocation + "\\" + Path.GetFileName(Url)
+                );
+            }
+
+            while (IsDownloading)
+            {
+                await Task.Delay(500);
             }
         }
 
@@ -354,21 +356,19 @@ namespace Piston_Installer.utils
 
         private static void wc_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
+            IsDownloading = false;
             if (e.Cancelled)
             {
                 System.Diagnostics.Debug.WriteLine("The download has been cancelled");
-                isDownloading = false;
                 return;
             }
 
             if (e.Error != null) // We have an error! Retry a few times, then abort.
             {
                 System.Diagnostics.Debug.WriteLine("An error ocurred while trying to download file");
-                isDownloading = false;
                 return;
             }
             System.Diagnostics.Debug.WriteLine("File succesfully downloaded");
-            isDownloading = false;
         }
     }
 }

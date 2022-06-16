@@ -1,20 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PistonInstaller.net.Eatham532.variables;
 
-namespace Piston_Installer.utils
+namespace PistonInstaller.net.Eatham532.utils
 {
     internal class GetProfileUtils
     {
-        public static string fabricIcon = ProjectData.Default.FabricIcon;
-
-        public static string forgeIcon = ProjectData.Default.ForgeIcon;
-        
-        
-        
-        
+        public static string ForgeIcon = ProjectSpecialData.ForgeIcon;
+        public static string FabricIcon = ProjectSpecialData.FabricIcon;
         public static string GetProfile(string created, string icon, string lastUsed,
             string lastVersionId, string name, string? gameDir /* + Type: Custom */)
         {

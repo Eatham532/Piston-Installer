@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:utils="clr-namespace:PistonInstaller.net.Eatham532.utils"
+             xmlns:varibles="clr-namespace:PistonInstaller.net.Eatham532.variables"
+             x:Class="PistonInstaller.net.Eatham532.pages.InstallModloaderFabricPages.InstallFabricStep2Page"
+             Title="InstallFabricStep2Page">
+    <Grid Margin="0, 30, 0, 0">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid BackgroundColor="#b4905a" Grid.RowSpan="4">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <!-- One -->
+            <Label
+                TextColor="#9f844d"
+                Grid.Row="0"
+                Text="○"
+                FontSize="100"
+                HorizontalTextAlignment="Center"/>
+            <Label
+                TextColor="#9f844d"
+                Grid.Row="0"
+                Margin="0, 35, 0, 0"
+                Text="1"
+                FontSize="50"
+                HorizontalTextAlignment="Center"/>
+
+            <!-- Two -->
+            <Label
+                TextColor="#7a5e33"
+                Grid.Row="1"
+                Text="○"
+                FontSize="100"
+                HorizontalTextAlignment="Center"/>
+            <Label
+                TextColor="#7a5e33"
+                Grid.Row="1"
+                Margin="0, 35, 0, 0"
+                Text="2"
+                FontSize="50"
+                HorizontalTextAlignment="Center"/>
+
+            <!-- Three -->
+            <Label
+                Grid.Row="2"
+                Text="○"
+                FontSize="100"
+                HorizontalTextAlignment="Center"/>
+            <Label
+                Grid.Row="2"
+                Margin="0, 35, 0, 0"
+                Text="3"
+                FontSize="50"
+                HorizontalTextAlignment="Center"/>
+
+            <!-- Four -->
+            <Label
+                Grid.Row="3"
+                Text="○"
+                FontSize="100"
+                HorizontalTextAlignment="Center"/>
+            <Label
+                Grid.Row="3"
+                Margin="0, 35, 0, 0"
+                Text="4"
+                FontSize="50"
+                HorizontalTextAlignment="Center"/>
+        </Grid>
+
+        <StackLayout Grid.Column="1" Grid.Row="0">
+            <Label
+            Text="Install Fabric"
+            HorizontalTextAlignment="Center"
+            FontSize="70"/>
+
+            <Label
+            Text="Select Version"
+            HorizontalTextAlignment="Center"
+            FontSize="30"/>
+        </StackLayout>
+
+        <StackLayout Grid.Row="1" Grid.Column="1">
+            <StackLayout HorizontalOptions="Center" Margin="20, 0, 0, 0">
+                <Picker
+                BackgroundColor="#2b2b2b"
+                Margin="0, 40, 0, 0"
+                x:Name="McVersionPicker"
+                Title="Minecraft Version*"
+                HorizontalTextAlignment="Center"
+                TextColor="White"
+                WidthRequest="500"
+                SelectedIndex="{x:Static varibles:InstallFabricVariables.SelctedIndexMcVersion}"
+                SelectedIndexChanged="McVersionPicker_SelectedIndexChanged"/>
+
+                <HorizontalStackLayout 
+                    Margin="0, 10, 0, 0">
+                    
+                    <Label
+                    Margin="0, 0, 20, 0"
+                    FontSize="Medium"
+                    Text="Include Snapshots?"/>
+
+                    <CheckBox 
+                    x:Name="McVersionTypeCheckBox"
+                    CheckedChanged="McVersionTypeCheckBox_CheckedChanged"
+                    IsChecked="{x:Static varibles:InstallFabricVariables.IncludeSnapshots}"/>
+                </HorizontalStackLayout>
+            </StackLayout>
+
+            <Picker
+                BackgroundColor="#2b2b2b"
+                Margin="20, 40, 0, 0"
+                HorizontalTextAlignment="Center"
+                x:Name="LoaderVersionPicker"
+                Title="Loader Version*"
+                WidthRequest="500"
+                TextColor="White"
+                ItemsSource="{x:Static utils:FabricUtils.FabricLoaderVersionsList}"
+                SelectedIndex="{x:Static varibles:InstallFabricVariables.SelectedIndexLoaderVersion}"
+                SelectedIndexChanged="LoaderVersionPicker_SelectedIndexChanged"/>
+        </StackLayout>
+
+        <Grid Margin="10, 35, 10, 0" Grid.Row="3" Grid.Column="1" VerticalOptions="End">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="95"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="95"/>
+            </Grid.ColumnDefinitions>
+
+            <Button 
+                    Grid.Column="0"
+                    Margin="10"
+                    x:Name="BackBtn"
+                    Text="Back"
+                    WidthRequest="75"
+                    HeightRequest="40"
+                    TextColor="Black"
+                    Clicked="BackBtn_Clicked"/>
+
+            <Button 
+                    Grid.Column="2"
+                    Margin="10"
+                    x:Name="NextBtn"
+                    Text="Next"
+                    WidthRequest="75"
+                    HeightRequest="40"
+                    TextColor="Black"
+                    Clicked="NextBtn_Clicked"/>
+        </Grid>
+    </Grid>
+</ContentPage>

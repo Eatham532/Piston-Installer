@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PistonInstaller.net.Eatham532.pages.InstallModloaderFabricPages.StartInstallationFabricPage"
+             Title="StartInstallationFabricPage" x:Name="InstallationPage" Loaded="InstallationPage_Loaded">
+    <Grid Margin="0, 30, 0, 0">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid BackgroundColor="#b4905a" Grid.RowSpan="4">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <!-- One -->
+            <Label
+                TextColor="#9f844d"
+                Grid.Row="0"
+                Text="○"
+                FontSize="100"
+                HorizontalTextAlignment="Center"/>
+            <Label
+                TextColor="#9f844d"
+                Grid.Row="0"
+                Margin="0, 35, 0, 0"
+                Text="1"
+                FontSize="50"
+                HorizontalTextAlignment="Center"/>
+
+            <!-- Two -->
+            <Label
+                TextColor="#9f844d"
+                Grid.Row="1"
+                Text="○"
+                FontSize="100"
+                HorizontalTextAlignment="Center"/>
+            <Label
+                TextColor="#9f844d"
+                Grid.Row="1"
+                Margin="0, 35, 0, 0"
+                Text="2"
+                FontSize="50"
+                HorizontalTextAlignment="Center"/>
+
+            <!-- Three -->
+            <Label
+                TextColor="#9f844d"
+                Grid.Row="2"
+                Text="○"
+                FontSize="100"
+                HorizontalTextAlignment="Center"/>
+            <Label
+                TextColor="#9f844d"
+                Grid.Row="2"
+                Margin="0, 35, 0, 0"
+                Text="3"
+                FontSize="50"
+                HorizontalTextAlignment="Center"/>
+
+            <!-- Four -->
+            <Label
+                TextColor="#7a5e33"
+                Grid.Row="3"
+                Text="○"
+                FontSize="100"
+                HorizontalTextAlignment="Center"/>
+            <Label
+                TextColor="#7a5e33"
+                Grid.Row="3"
+                Margin="0, 35, 0, 0"
+                Text="4"
+                FontSize="50"
+                HorizontalTextAlignment="Center"/>
+        </Grid>
+
+        <StackLayout Grid.Column="1" Grid.Row="0" Grid.RowSpan="4" HorizontalOptions="Center" VerticalOptions="Center">
+            <Image
+                Margin="50"
+                Source="piston_moving.gif"
+                HeightRequest="300"/>
+
+            <Label
+                FontSize="Large"
+                Text="Piston Installer is currently doing everything for you"
+                Margin="0, 0, 0, 20"/>
+
+            <ProgressBar
+                x:Name="InstallationProgressBar"
+                ProgressColor="#7a5e33"/>
+
+            <Label
+                HorizontalTextAlignment="Center"
+                x:Name="CurrentOperationLabel"
+                Text="Loading..."/>
+        </StackLayout>
+    </Grid>
+</ContentPage>

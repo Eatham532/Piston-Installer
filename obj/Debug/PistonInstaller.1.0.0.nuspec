@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>PistonInstaller</id>
+    <version>1.0.0</version>
+    <authors>PistonInstaller</authors>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework="net6.0-android31.0">
+        <dependency id="CurseForge.APIClient" version="1.3.4" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Maui.Dependencies" version="6.0.312" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Maui.Extensions" version="6.0.312" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Web.WebView2" version="1.0.1245.22" exclude="Build,Analyzers" />
+        <dependency id="SixLabors.ImageSharp" version="2.1.2" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net6.0-ios15.4">
+        <dependency id="CurseForge.APIClient" version="1.3.4" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Maui.Dependencies" version="6.0.312" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Maui.Extensions" version="6.0.312" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Web.WebView2" version="1.0.1245.22" exclude="Build,Analyzers" />
+        <dependency id="SixLabors.ImageSharp" version="2.1.2" exclude="Build,Analyzers" />
+        <dependency id="System.Runtime.InteropServices.NFloat.Internal" version="6.0.1" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net6.0-maccatalyst15.4">
+        <dependency id="CurseForge.APIClient" version="1.3.4" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Maui.Dependencies" version="6.0.312" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Maui.Extensions" version="6.0.312" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Web.WebView2" version="1.0.1245.22" exclude="Build,Analyzers" />
+        <dependency id="SixLabors.ImageSharp" version="2.1.2" exclude="Build,Analyzers" />
+        <dependency id="System.Runtime.InteropServices.NFloat.Internal" version="6.0.1" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net6.0-windows10.0.19041">
+        <dependency id="CurseForge.APIClient" version="1.3.4" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Maui.Dependencies" version="6.0.312" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Maui.Extensions" version="6.0.312" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Web.WebView2" version="1.0.1245.22" exclude="Build,Analyzers" />
+        <dependency id="SixLabors.ImageSharp" version="2.1.2" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="D:\VS\source\PistonInstaller\bin\Debug\net6.0-android\PistonInstaller.runtimeconfig.json" target="lib\net6.0-android31.0\PistonInstaller.runtimeconfig.json" />
+    <file src="D:\VS\source\PistonInstaller\bin\Debug\net6.0-android\PistonInstaller.dll" target="lib\net6.0-android31.0\PistonInstaller.dll" />
+    <file src="D:\VS\source\PistonInstaller\bin\Debug\net6.0-android\PistonInstaller.xml" target="lib\net6.0-android31.0\PistonInstaller.xml" />
+    <file src="D:\VS\source\PistonInstaller\bin\Debug\net6.0-ios\iossimulator-x64\PistonInstaller.runtimeconfig.json" target="lib\net6.0-ios15.4\PistonInstaller.runtimeconfig.json" />
+    <file src="D:\VS\source\PistonInstaller\bin\Debug\net6.0-ios\iossimulator-x64\PistonInstaller.dll" target="lib\net6.0-ios15.4\PistonInstaller.dll" />
+    <file src="D:\VS\source\PistonInstaller\bin\Debug\net6.0-maccatalyst\maccatalyst-x64\PistonInstaller.runtimeconfig.json" target="lib\net6.0-maccatalyst15.4\PistonInstaller.runtimeconfig.json" />
+    <file src="D:\VS\source\PistonInstaller\bin\Debug\net6.0-maccatalyst\maccatalyst-x64\PistonInstaller.dll" target="lib\net6.0-maccatalyst15.4\PistonInstaller.dll" />
+    <file src="D:\VS\source\PistonInstaller\bin\Debug\net6.0-windows10.0.19041.0\win10-x64\PistonInstaller.runtimeconfig.json" target="lib\net6.0-windows10.0.19041\PistonInstaller.runtimeconfig.json" />
+    <file src="D:\VS\source\PistonInstaller\bin\Debug\net6.0-windows10.0.19041.0\win10-x64\PistonInstaller.dll" target="lib\net6.0-windows10.0.19041\PistonInstaller.dll" />
+    <file src="D:\VS\source\PistonInstaller\bin\Debug\net6.0-windows10.0.19041.0\win10-x64\resources.pri" target="lib\net6.0-windows10.0.19041\resources.pri" />
+  </files>
+</package>

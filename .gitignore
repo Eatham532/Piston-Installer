@@ -3,3 +3,6 @@
 ################################################################################
 
 /net/Eatham532/variables/ProjectSpecialData.resx
+/.vs
+/bin/Debug
+/net/Eatham532/variables/ProjectSpecialData.Designer.cs

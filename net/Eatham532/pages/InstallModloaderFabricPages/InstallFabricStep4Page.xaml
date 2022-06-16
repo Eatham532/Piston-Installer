@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:varibles="clr-namespace:PistonInstaller.net.Eatham532.variables"
+             x:Class="PistonInstaller.net.Eatham532.pages.InstallModloaderFabricPages.InstallFabricStep4Page"
+             Title="InstallFabricStep4Page">
+    
+    
+    <Grid Margin="0, 30, 0, 0">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid BackgroundColor="#b4905a" Grid.RowSpan="4">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <!-- One -->
+            <Label
+                TextColor="#9f844d"
+                Grid.Row="0"
+                Text="○"
+                FontSize="100"
+                HorizontalTextAlignment="Center"/>
+            <Label
+                TextColor="#9f844d"
+                Grid.Row="0"
+                Margin="0, 35, 0, 0"
+                Text="1"
+                FontSize="50"
+                HorizontalTextAlignment="Center"/>
+
+            <!-- Two -->
+            <Label
+                TextColor="#9f844d"
+                Grid.Row="1"
+                Text="○"
+                FontSize="100"
+                HorizontalTextAlignment="Center"/>
+            <Label
+                TextColor="#9f844d"
+                Grid.Row="1"
+                Margin="0, 35, 0, 0"
+                Text="2"
+                FontSize="50"
+                HorizontalTextAlignment="Center"/>
+
+            <!-- Three -->
+            <Label
+                TextColor="#9f844d"
+                Grid.Row="2"
+                Text="○"
+                FontSize="100"
+                HorizontalTextAlignment="Center"/>
+            <Label
+                TextColor="#9f844d"
+                Grid.Row="2"
+                Margin="0, 35, 0, 0"
+                Text="3"
+                FontSize="50"
+                HorizontalTextAlignment="Center"/>
+
+            <!-- Four -->
+            <Label
+                TextColor="#7a5e33"
+                Grid.Row="3"
+                Text="○"
+                FontSize="100"
+                HorizontalTextAlignment="Center"/>
+            <Label
+                TextColor="#7a5e33"
+                Grid.Row="3"
+                Margin="0, 35, 0, 0"
+                Text="4"
+                FontSize="50"
+                HorizontalTextAlignment="Center"/>
+        </Grid>
+
+        <StackLayout Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" Margin="0, 40, 0, 0" HorizontalOptions="Center">
+            <Image
+                Source="{x:Static varibles:InstallFabricVariables.InstallationImageResized}"
+                WidthRequest="300"/>
+
+            <Label
+                HorizontalTextAlignment="Center"
+                FontSize="Header"
+                Text="{x:Static varibles:InstallFabricVariables.InstallationName}"/>
+        
+            <Label
+                HorizontalTextAlignment="Center"
+                FontSize="Subtitle"
+                Text="{x:Static varibles:InstallFabricVariables.JointSelectedVersions}"/>
+
+            <Button
+                x:Name="StartInstallBtn"
+                HorizontalOptions="Center"
+                WidthRequest="400"
+                Margin="0, 30, 0, 0"
+                Text="Install"
+                TextColor="Black"
+                Clicked="StartInstallBtn_Clicked"/>
+
+            <HorizontalStackLayout Margin="0, 10, 0, 0" HorizontalOptions="Center">
+                <Label
+                    Margin="0, 5, 0, 0"
+                    Text="Also install the FabricAPI?"/>
+
+                <CheckBox
+                    x:Name="InstallFabricAPICheckBox"
+                    Margin="5, 0, -90, 0"
+                    Scale="0.9"
+                    CheckedChanged="InstallFabricAPICheckBox_CheckedChanged"
+                    IsChecked="{x:Static varibles:InstallFabricVariables.InstallFabricAPI}"/>
+
+                <ImageButton
+                    HorizontalOptions="Center"
+                    Source="{AppThemeBinding Light='help_icon_black.png', Dark='help_icon_white.png'}"
+                    WidthRequest="30"
+                    HeightRequest="30"
+                    BackgroundColor="Transparent"
+                    BorderColor="{AppThemeBinding Light='Black', Dark='White'}"
+                    x:Name="HelpButton"
+                    Clicked="HelpButton_Clicked"/>
+            </HorizontalStackLayout>
+        </StackLayout>
+
+        <Grid Margin="10, 35, 10, 0" Grid.Row="3" Grid.Column="1" VerticalOptions="End">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="95"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="95"/>
+            </Grid.ColumnDefinitions>
+
+            <Button 
+                    Grid.Column="0"
+                    Margin="10"
+                    x:Name="BackBtn"
+                    Text="Back"
+                    WidthRequest="75"
+                    HeightRequest="40"
+                    TextColor="Black"
+                    Clicked="BackBtn_Clicked"/>
+        </Grid>
+    </Grid>
+</ContentPage>

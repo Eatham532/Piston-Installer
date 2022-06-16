@@ -1,4 +1,4 @@
-﻿namespace Piston_Installer.utils
+﻿namespace PistonInstaller.net.Eatham532.utils
 {
     public class ModpackUtils
     {

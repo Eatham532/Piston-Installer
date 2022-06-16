@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:resources="clr-namespace:PistonInstaller.net.Eatham532.variables"
+             x:Class="PistonInstaller.net.Eatham532.pages.InstallModloaderFabricPages.InstallFabricStep1Page"
+             Title="InstallFabricStep1Page" Loaded="ContentPage_Loaded" x:Name="InstallFabricStep1">
+    
+    <Grid Margin="0, 30, 0, 0">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid BackgroundColor="#b4905a" Grid.RowSpan="4">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            <!-- One -->
+            <Label
+                TextColor="#7a5e33"
+                Grid.Row="0"
+                Text="○"
+                FontSize="100"
+                HorizontalTextAlignment="Center"/>
+            <Label
+                TextColor="#7a5e33"
+                Grid.Row="0"
+                Margin="0, 35, 0, 0"
+                Text="1"
+                FontSize="50"
+                HorizontalTextAlignment="Center"/>
+
+            <!-- Two -->
+            <Label
+                Grid.Row="1"
+                Text="○"
+                FontSize="100"
+                HorizontalTextAlignment="Center"/>
+            <Label
+                Grid.Row="1"
+                Margin="0, 35, 0, 0"
+                Text="2"
+                FontSize="50"
+                HorizontalTextAlignment="Center"/>
+
+            <!-- Three -->
+            <Label
+                Grid.Row="2"
+                Text="○"
+                FontSize="100"
+                HorizontalTextAlignment="Center"/>
+            <Label
+                Grid.Row="2"
+                Margin="0, 35, 0, 0"
+                Text="3"
+                FontSize="50"
+                HorizontalTextAlignment="Center"/>
+
+            <!-- Four -->
+            <Label
+                Grid.Row="3"
+                Text="○"
+                FontSize="100"
+                HorizontalTextAlignment="Center"/>
+            <Label
+                Grid.Row="3"
+                Margin="0, 35, 0, 0"
+                Text="4"
+                FontSize="50"
+                HorizontalTextAlignment="Center"/>
+        </Grid>
+
+        <Label
+            Grid.Column="1"
+            Grid.Row="0"
+            Text="Install Fabric"
+            HorizontalTextAlignment="Center"
+            FontSize="70"/>
+
+        <Label
+            Margin="0, 100, 0, 0"
+            Grid.Column="1"
+            Grid.Row="0"
+            Text="Choose locations"
+            HorizontalTextAlignment="Center"
+            FontSize="30"/>
+
+        <StackLayout Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" HorizontalOptions="Center">
+            <HorizontalStackLayout HorizontalOptions="Start" Margin="30, 30 ,0 ,0">
+                <Button
+                    x:Name="McAppdataLocationBtn"
+                    WidthRequest="275"
+                    HeightRequest="40"
+                    Text="Choose Minecraft's appdata location* "
+                    Margin="0, 0, 15, 0"
+                    TextColor="Black"
+                    Clicked="McAppdataLocationBtn_Clicked"/>
+
+                <StackLayout Margin="0, 30, 0, 0">
+                    <Entry
+                    x:Name="McAppdataLocationTxtBox"
+                    HeightRequest="30"
+                    WidthRequest="500"
+                    Margin="0, 10, 0, 0"
+                    MaxLength="20" Placeholder="Enter location here"
+                    TextChanged="McAppdataLocationTxtBox_TextChanged"/>
+                    
+                    <HorizontalStackLayout HorizontalOptions="Start" Margin="0, 10, 0, 0">
+                        <Label Text="Create an instance?" FontSize="Medium" Margin="0, 0, 10, 0"/>
+                        <CheckBox x:Name="CreateInstanceCheckBox" IsChecked="{x:Static resources:InstallFabricVariables.createInstance}" CheckedChanged="CreateInstanceCheckBox_CheckedChanged"/>
+                    </HorizontalStackLayout>                    
+                </StackLayout>
+            </HorizontalStackLayout>
+
+
+            <HorizontalStackLayout HorizontalOptions="Start" Margin="0, 30 ,0 ,0">
+                <Button
+                    x:Name="McInstallLocationBtn"
+                    WidthRequest="275"
+                    HeightRequest="40"
+                    Margin="30, 0, 15, 0"
+                    Text="Choose FabricMc's install location* "
+                    TextColor="Black"
+                    Clicked="McAppdataLocationBtn_Clicked"
+                    IsEnabled="{x:Static resources:InstallFabricVariables.createInstance}"/>
+
+                <Entry
+                    x:Name="McInstallLocationTxtBox"
+                    HeightRequest="30"
+                    WidthRequest="500"
+                    MaxLength="20" Placeholder="Enter location here"
+                    TextChanged="McInstallLocationTxtBox_TextChanged"
+                    IsEnabled="{x:Static resources:InstallFabricVariables.createInstance}"/>
+
+                <ImageButton
+                    Margin="10, 0, 0, 0"
+                    Source="{AppThemeBinding Light='help_icon_black.png', Dark='help_icon_white.png'}"
+                    WidthRequest="30"
+                    HeightRequest="30"
+                    BackgroundColor="Transparent"
+                    BorderColor="{AppThemeBinding Light='Black', Dark='White'}"
+                    x:Name="HelpButton"
+                    Clicked="HelpButton_Clicked"/>
+
+            </HorizontalStackLayout>
+
+            <Label Text="The defalt location is .minecraft\.instances" HorizontalOptions="Start" Margin="320, 10 ,0 ,0" TextColor="Gray"/>
+        </StackLayout>
+
+        <Grid Margin="10, 35, 10, 0" Grid.Row="3" Grid.Column="1" VerticalOptions="End">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="95"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="95"/>
+            </Grid.ColumnDefinitions>
+
+            <Button 
+                    Grid.Column="0"
+                    Margin="10"
+                    x:Name="BackBtn"
+                    Text="Back"
+                    WidthRequest="75"
+                    HeightRequest="40"
+                    TextColor="Black"
+                    Clicked="BackBtn_Clicked"/>
+
+            <Button 
+                    Grid.Column="2"
+                    Margin="10"
+                    x:Name="NextBtn"
+                    Text="Next"
+                    WidthRequest="75"
+                    HeightRequest="40"
+                    TextColor="Black"
+                    Clicked="NextBtn_Clicked"/>
+        </Grid>
+
+    </Grid>
+       
+</ContentPage>
