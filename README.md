@@ -31,7 +31,7 @@ Note: The latest version is bugged when installing fabric. I am not bothered to 
 - Install Modrinth modpacks, AtLauncher modpacks, FTB modpacks and whatever else there is...
 
 ## Stability
-Right now you can use it and it will work. There will be plenty of bugs but they won't affect your results while using this.
+You can use the most recent version. There may be bugs. The Fabric installer as a big bug but I am not bothered to fix it (Reason above) The earlier versions should work. 
 
 ## FAQ
 
