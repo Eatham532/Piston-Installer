@@ -6,13 +6,12 @@
 
 ## What is Piston Installer?
 
-Piston Installer is a Minecraft launcher mod installer and tool app for windows (and macOS soon [More info here](https://github.com/Eatham532/Piston-Installer#macos).)
-This app is originally made for those people who for some reason don't know how to properly install mods. 
+Piston Installer is a Minecraft launcher mod installer and tool app for windows and mac.
+This app is originally made for those people who for some reason don't know how to properly install mods on the minecraft launcher.
 
-I want to make this app mostly community drivien. If you have a suggestion don't be afraid to message me on discord. 
+I want to make this app mostly community drivien. If you have a suggestion don't be afraid to message me on [discord](https://discord.gg/efQhsySt8m). 
 
-Built using C# as a winForms project.
-
+Note: The latest version is bugged when installing fabric. I am not bothered to fix it as I am doing a rewrite. Right now I won't have a release until I have a solution to [this](https://github.com/dotnet/maui/issues/8323).
 
 ## UPDATE
 
@@ -22,10 +21,11 @@ Built using C# as a winForms project.
 
 ## Features
 - Fabric Installer
+- Quilt Installer
 - Modpack Installer (Only curseforge fabric packs atm)
-- Mods Installer (Modrinth & Curseforge)
 
 ## Planned Features
+- Download mods from modrinth and curseforge
 - I want to a forge installer but forge is picky and don't want people to Auto DL it (Looking for alternatives and If you have an idea DM me)
 - When you install a mod it alos downloads the extra required mods
 - Install Modrinth modpacks, AtLauncher modpacks, FTB modpacks and whatever else there is...
